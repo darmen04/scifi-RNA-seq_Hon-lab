@@ -402,7 +402,13 @@ def get_attribute(s,att):
 def generate_STAR_index(output_dir, nthreads,genomeSAindexNbases,splicing):
     splicing = (splicing=='True')
     if splicing:
-        star_command = """STAR  --runMode genomeGenerate --genomeDir {0} --genomeFastaFiles {0}/genome.fa --sjdbGTFfile {0}/exons.gtf --runThreadN {1} --limitGenomeGenerateRAM 24000000000 --genomeSAindexNbases {2}""".format(output_dir, nthreads, genomeSAindexNbases)
+        star_command = """STAR  --runMode genomeGenerate\
+                                --genomeDir {0}\
+                                --genomeFastaFiles {0}/genome.fa\
+                                --sjdbGTFfile {0}/exons.gtf\
+                                --runThreadN {1}\
+                                --limitGenomeGenerateRAM 24000000000\
+                                --genomeSAindexNbases {2}""".format(output_dir, nthreads, genomeSAindexNbases)
     else:
         star_command = """STAR  --runMode genomeGenerate --genomeDir {0} --genomeFastaFiles {0}/genome.fa --runThreadN {1} --limitGenomeGenerateRAM 24000000000 --genomeSAindexNbases {2}""".format(output_dir, nthreads, genomeSAindexNbases)
     rc = subprocess.call(star_command, shell=True)
